@@ -6,8 +6,8 @@ const TaskLine = ({ task }) => {
     description
   } = task;
   return (
-    <div className='flex flex-row cursor-pointer group/line'>
-      <div className='w-6 h-6 pt-3'>
+    <div className='flex flex-row cursor-pointer group/line relative'>
+      <div className='w-6 h-6 pt-3 absolute -left-5'>
         <DragIcon className='group-hover/line:block hidden hover:bg-gray-100 hover:rounded-sm' />
       </div>
       <div className='border-b border-gray-200 py-3 ml-2 w-full'>
