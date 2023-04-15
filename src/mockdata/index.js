@@ -1,4 +1,4 @@
-const TASKS = [
+export const TASKS = [
   {
     completed: false,
     description: 'Qui sunt mollit consequat amet culpa.',
@@ -6,7 +6,8 @@ const TASKS = [
     ownerId: '',
     priority: 'P4',
     projectId: '',
-    title: 'Task 1'
+    title: 'Task 1',
+    sectionId: 1
   },
   {
     completed: true,
@@ -15,7 +16,8 @@ const TASKS = [
     ownerId: '',
     priority: 'P3',
     projectId: '',
-    title: 'Task 2'
+    title: 'Task 2',
+    sectionId: 2
   },
   {
     completed: false,
@@ -24,7 +26,8 @@ const TASKS = [
     ownerId: '',
     priority: 'P2',
     projectId: '',
-    title: 'Task 3'
+    title: 'Task 3',
+    sectionId: 2
   },
   {
     completed: true,
@@ -33,8 +36,34 @@ const TASKS = [
     ownerId: '',
     priority: 'P1',
     projectId: '',
-    title: 'Task 4'
+    title: 'Task 4',
+    sectionId: 3
+  },
+  {
+    completed: true,
+    description: 'Fugiat est enim cupidatat nisi minim duis esse occaecat.',
+    id: 5,
+    ownerId: '',
+    priority: 'P4',
+    projectId: '',
+    title: 'Task 5'
   }
 ];
 
-export default TASKS;
+export const SECTIONS = [
+  {
+    id: 1,
+    title: 'Section 1',
+    order: 0
+  },
+  {
+    id: 2,
+    title: 'Section 2',
+    order: 1
+  },
+  {
+    id: 3,
+    title: 'Section 3',
+    order: 2
+  }
+];
