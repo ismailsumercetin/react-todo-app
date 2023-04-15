@@ -1,12 +1,12 @@
 import { createContext, useContext, useState } from 'react';
-import TASKS from '../mockdata';
+import { TASKS } from '../mockdata';
 
 const TaskContext = createContext({});
 
 export const TaskProvider = ({children}) => {
   const [tasks, setTasks] = useState(TASKS);
 
-  const getTaskById = id => tasks.find(task => task.id = id);
+  const getTaskById = id => tasks.find(task => task.id === id);
 
   const value = {
     tasks,
