@@ -47,23 +47,57 @@ export const TASKS = [
     priority: 'P4',
     projectId: '',
     title: 'Task 5'
-  }
+  },
+  {
+    completed: false,
+    description: 'Tempor fugiat amet nisi cillum proident Lorem dolore officia duis amet.',
+    id: 6,
+    ownerId: '',
+    priority: 'P2',
+    projectId: '',
+    title: 'Task 6',
+    sectionId: 2
+  },
+  {
+    completed: false,
+    description: 'Aliquip pariatur ex ipsum et ipsum veniam duis quis esse.',
+    id: 7,
+    ownerId: '',
+    priority: 'P2',
+    projectId: '',
+    title: 'Task 7',
+    sectionId: 2
+  },
+  {
+    completed: false,
+    description: 'Quis dolor veniam exercitation proident occaecat sunt pariatur enim.',
+    id: 8,
+    ownerId: '',
+    priority: 'P2',
+    projectId: '',
+    title: 'Task 8',
+    sectionId: 2
+  },
 ];
 
 export const SECTIONS = [
   {
+    id: 'unsectioned',
+    order: 0
+  },
+  {
     id: 1,
     title: 'Section 1',
-    order: 0
+    order: 1
   },
   {
     id: 2,
     title: 'Section 2',
-    order: 1
+    order: 2
   },
   {
     id: 3,
     title: 'Section 3',
-    order: 2
+    order: 3
   }
 ];
