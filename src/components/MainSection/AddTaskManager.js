@@ -1,0 +1,73 @@
+import { useState, useRef } from 'react';
+import ContentEditable from 'react-contenteditable';
+import useTask from '../../contexts/useTask';
+
+const AddTaskManager = ({ close, sectionId }) => {
+  const [taskName, setTaskName] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
+  const taskNameEl =  useRef();
+  const taskDescEl =  useRef();
+  const { addTask } = useTask();
+
+  return (
+  <div className='cursor-pointer border border-gray-10 rounded-lg focus-within:border-gray-400'>
+    <div className='overflow-scroll max-h-64 px-4 py-2'>
+      <ContentEditable
+        innerRef={taskNameEl}
+        html={taskName}
+        className='focus:outline-none font-medium cursor-text mb-1'
+        disabled={false}
+        onChange={e => setTaskName(e.target.value)}
+        tagName='div'
+      />
+      <ContentEditable
+        innerRef={taskDescEl}
+        html={taskDescription}
+        className='focus:outline-none text-sm cursor-text'
+        disabled={false}
+        onChange={e => setTaskDescription(e.target.value)}
+        tagName='div'
+      />
+    </div>
+    <div className='px-4 py-2'>
+      <div>
+      { /* priority dropdown comes here */}
+      </div>
+    </div>
+    <div className='flex flex-row justify-between items-center border-t px-4 py-2'>
+      <div>
+        { /* empty for now */}
+      </div>
+      <div className='flex flex-row'>
+        <div
+          onClick={close}
+          className='px-4 py-2 rounded-md bg-gray-100 text-sm mr-2 hover:bg-gray-200'
+        >
+          Cancel
+        </div>
+        <div
+          className={`px-4 py-2 rounded-md bg-gray-100 text-sm bg-red-600 text-white hover:bg-red-700 ${taskName.length === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
+          onClick={() => {
+            const task = {
+              ...(sectionId !== 'unsectioned' && { sectionId }),
+              title: taskName,
+              description: taskDescription,
+              ownerId: '',
+              priority: 'P2',
+              projectId: ''
+            };
+            addTask(task);
+            setTaskName('')
+            setTaskDescription('')
+            taskNameEl.current.focus();
+          }}
+        >
+          Add task
+        </div>
+      </div>
+    </div>
+  </div>
+)
+};
+
+export default AddTaskManager;
