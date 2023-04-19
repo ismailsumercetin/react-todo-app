@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import ContentEditable from 'react-contenteditable';
 import useTask from '../../contexts/useTask';
 
@@ -9,13 +9,16 @@ const AddTaskManager = ({ close, sectionId }) => {
   const taskDescEl =  useRef();
   const { addTask } = useTask();
 
+  useEffect(() => { taskNameEl.current.focus(); }, []);
+
   return (
   <div className='cursor-pointer border border-gray-10 rounded-lg focus-within:border-gray-400'>
     <div className='overflow-scroll max-h-64 px-4 py-2'>
       <ContentEditable
         innerRef={taskNameEl}
         html={taskName}
-        className='focus:outline-none font-medium cursor-text mb-1'
+        className='focus:outline-none font-normal text-base cursor-text mb-1 empty:before:content-[attr(placeholder)] empty:before:text-gray-400'
+        placeholder='Task name'
         disabled={false}
         onChange={e => setTaskName(e.target.value)}
         tagName='div'
@@ -23,7 +26,8 @@ const AddTaskManager = ({ close, sectionId }) => {
       <ContentEditable
         innerRef={taskDescEl}
         html={taskDescription}
-        className='focus:outline-none text-sm cursor-text'
+        className='focus:outline-none text-sm font-light cursor-text empty:before:content-[attr(placeholder)] empty:before:text-gray-400'
+        placeholder='Description'
         disabled={false}
         onChange={e => setTaskDescription(e.target.value)}
         tagName='div'
