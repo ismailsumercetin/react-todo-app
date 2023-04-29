@@ -37,7 +37,7 @@ const Section = ({ index, section, setActiveTaskManager, activeTaskManager, togg
       </div>
       {
         <span
-          className={`block text-red-600 overflow-hidden text-center ${toggleSectionManager !== null ? 'mt-6 mb-2 hover:opacity-0 cursor-auto' : 'my-6'} cursor-pointer opacity-0 hover:opacity-100 before:content-[''] after:content-['']
+          className={`block text-red-600 overflow-hidden text-center ${toggleSectionManager !== null ? 'hover:opacity-0 mt-6 mb-2 cursor-auto' : 'hover:opacity-100 my-6'} cursor-pointer opacity-0 before:content-[''] after:content-['']
             before:inline-block after:inline-block before:h-px after:h-px before:relative after:relative before:align-middle after:align-middle
             before:w-1/2 after:w-1/2 before:bg-red-600 after:bg-red-600 before:right-3 before:ml-[-50%] after:left-3 after:mr-[-50%]`}
             onClick={() => setToggleSectionManager(index)}
