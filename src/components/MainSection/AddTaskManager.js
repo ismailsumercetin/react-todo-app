@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import ContentEditable from 'react-contenteditable';
+import uuid from 'react-uuid';
+import { createTask } from '../../api';
 import useTask from '../../contexts/useTask';
 
 const AddTaskManager = ({ close, sectionId }) => {
@@ -52,17 +54,22 @@ const AddTaskManager = ({ close, sectionId }) => {
         <div
           className={`px-4 py-2 rounded-md bg-gray-100 text-sm bg-red-600 text-white hover:bg-red-700 ${taskName.length === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
           onClick={() => {
+            if (taskName === '') return;
+
+            const taskId = uuid();
             const task = {
               ...(sectionId !== 'unsectioned' && { sectionId }),
               title: taskName,
               description: taskDescription,
-              ownerId: '',
-              priority: 'P2',
-              projectId: ''
+              userId: 1,
+              priority: 'P4',
+              projectId: '',
+              completed: false
             };
+            createTask(taskId, task);
             addTask(task);
-            setTaskName('')
-            setTaskDescription('')
+            setTaskName('');
+            setTaskDescription('');
             taskNameEl.current.focus();
           }}
         >

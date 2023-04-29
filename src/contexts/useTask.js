@@ -1,10 +1,19 @@
-import { createContext, useContext, useState } from 'react';
-import { TASKS } from '../mockdata';
+import { createContext, useContext, useState, useEffect } from 'react';
+import { getTasksByUserId } from '../api';
 
 const TaskContext = createContext({});
 
 export const TaskProvider = ({children}) => {
-  const [tasks, setTasks] = useState(TASKS);
+  const [tasks, setTasks] = useState([]);
+
+  async function fetchData() {
+    const tasks = await getTasksByUserId(1);
+    setTasks(tasks);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const getTaskById = id => tasks.find(task => task.id === id);
   const addTask = (task) => setTasks([...tasks, {...task, id: tasks[tasks.length-1].id + 1, completed: false}]);
