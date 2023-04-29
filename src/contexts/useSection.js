@@ -1,10 +1,19 @@
-import { createContext, useContext, useState } from 'react';
-import { SECTIONS } from '../mockdata';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { getSectionsByUserId } from '../api';
 
 const SectionContext = createContext({});
 
 export const SectionProvider = ({children}) => {
-  const [sections, setSections] = useState(SECTIONS);
+  const [sections, setSections] = useState([]);
+
+  async function fetchSections() {
+    const _sections = await getSectionsByUserId(1);
+    setSections(_sections);
+  }
+
+  useEffect(() => {
+    fetchSections();
+  }, []);
 
   const getSectionById = id => sections.find(section => section.id === id);
 

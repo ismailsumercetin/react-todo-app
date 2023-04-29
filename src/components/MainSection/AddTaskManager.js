@@ -58,7 +58,7 @@ const AddTaskManager = ({ close, sectionId }) => {
 
             const taskId = uuid();
             const task = {
-              ...(sectionId !== 'unsectioned' && { sectionId }),
+              ...(sectionId && { sectionId }),
               title: taskName,
               description: taskDescription,
               userId: 1,
@@ -67,7 +67,7 @@ const AddTaskManager = ({ close, sectionId }) => {
               completed: false
             };
             createTask(taskId, task);
-            addTask(task);
+            addTask(taskId, task);
             setTaskName('');
             setTaskDescription('');
             taskNameEl.current.focus();

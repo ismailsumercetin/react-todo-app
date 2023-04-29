@@ -16,7 +16,7 @@ export const TaskProvider = ({children}) => {
   }, []);
 
   const getTaskById = id => tasks.find(task => task.id === id);
-  const addTask = (task) => setTasks([...tasks, {...task, id: tasks[tasks.length-1].id + 1, completed: false}]);
+  const addTask = (id, task) => setTasks([...tasks, {...task, id, completed: false}]);
 
   const value = {
     tasks,

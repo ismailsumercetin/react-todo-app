@@ -14,3 +14,13 @@ export const getTasksByUserId = async (userId) => {
 export const createTask = async (taskId, task) => {
   await setDoc(doc(db, "task", taskId), task);
 };
+
+export const getSectionsByUserId = async (userId) => {
+  const _query = query(collection(db, "section"), where("userId", "==", userId));
+  const querySnapshot = await getDocs(_query);
+  const sections = [];
+  querySnapshot.forEach((doc) => {
+    sections.push({ id: doc.id, ...doc.data() });
+  });
+  return sections;
+};
