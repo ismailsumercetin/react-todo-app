@@ -9,7 +9,7 @@ const AddTaskManager = ({ close, sectionId }) => {
   const [taskDescription, setTaskDescription] = useState('');
   const taskNameEl =  useRef();
   const taskDescEl =  useRef();
-  const { addTask } = useTask();
+  const { addTask, getNewOrderValue } = useTask();
 
   useEffect(() => { taskNameEl.current.focus(); }, []);
 
@@ -64,7 +64,8 @@ const AddTaskManager = ({ close, sectionId }) => {
               userId: 1,
               priority: 'P4',
               projectId: '',
-              completed: false
+              completed: false,
+              order: getNewOrderValue(sectionId)
             };
             createTask(taskId, task);
             addTask(taskId, task);

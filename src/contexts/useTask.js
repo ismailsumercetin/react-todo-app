@@ -17,11 +17,17 @@ export const TaskProvider = ({children}) => {
 
   const getTaskById = id => tasks.find(task => task.id === id);
   const addTask = (id, task) => setTasks([...tasks, {...task, id, completed: false}]);
+  const getNewOrderValue = sectionId => {
+    const filterCb = sectionId ? task => task.sectionId === sectionId : task => !task.sectionId;
+    const taskWithLastOrder = tasks.filter(filterCb).reduce((prev, cur) => (prev.order > cur.order) ? prev : cur, 0);
+    return taskWithLastOrder.order ? taskWithLastOrder.order + 1 : 1;
+  };
 
   const value = {
     tasks,
     getTaskById,
-    addTask
+    addTask,
+    getNewOrderValue
   };
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>
