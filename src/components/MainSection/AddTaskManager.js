@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import ContentEditable from 'react-contenteditable';
 import uuid from 'react-uuid';
-import { createTask } from '../../api';
 import useTask from '../../contexts/useTask';
 
 const AddTaskManager = ({ close, sectionId }) => {
@@ -58,6 +57,7 @@ const AddTaskManager = ({ close, sectionId }) => {
 
             const taskId = uuid();
             const task = {
+              id: taskId,
               ...(sectionId && { sectionId }),
               title: taskName,
               description: taskDescription,
@@ -67,8 +67,7 @@ const AddTaskManager = ({ close, sectionId }) => {
               completed: false,
               order: getNewOrderValue(sectionId)
             };
-            createTask(taskId, task);
-            addTask(taskId, task);
+            addTask(task);
             setTaskName('');
             setTaskDescription('');
             taskNameEl.current.focus();
