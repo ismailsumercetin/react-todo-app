@@ -107,7 +107,7 @@ const AddSectionContainer = ({ toggleSectionManager, setToggleSectionManager, in
   return (
     <>
       <AddSectionButton />
-      { toggleSectionManager === index && <AddSectionManager close={() => setToggleSectionManager(null)} /> }
+      { toggleSectionManager === index && <AddSectionManager index={index} close={() => setToggleSectionManager(null)} /> }
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { collection, query, where, getDocs, doc, setDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, setDoc, updateDoc, increment } from "firebase/firestore";
 import db from '../firebase';
 
 export const getTasksByUserId = async (userId) => {
@@ -23,4 +23,13 @@ export const getSectionsByUserId = async (userId) => {
     sections.push({ id: doc.id, ...doc.data() });
   });
   return sections;
+};
+
+export const createSection = async (sectionId, section, filteredSections) => {
+  await setDoc(doc(db, "section", sectionId), section);
+  for (const _section of filteredSections) {
+     await updateDoc(doc(db, "section", _section.id), {
+      order: increment(1)
+    });
+  }
 };

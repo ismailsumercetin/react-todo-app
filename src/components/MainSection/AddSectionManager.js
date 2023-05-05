@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import ContentEditable from 'react-contenteditable';
+import uuid from 'react-uuid';
+import useSection from '../../contexts/useSection';
 
-const AddSectionManager = ({ close }) => {
+const AddSectionManager = ({ index, close }) => {
   const [sectionName, setsectionName] = useState('');
-  const sectionNameEl =  useRef();
+  const sectionNameEl = useRef();
+  const { addSection } = useSection();
 
   useEffect(() => { sectionNameEl.current.focus(); }, []);
 
@@ -24,7 +27,17 @@ const AddSectionManager = ({ close }) => {
       <div className='flex flex-row'>
         <div
           className={`px-4 py-2 rounded-md bg-gray-100 mr-2 text-sm bg-red-600 text-white hover:bg-red-700 ${sectionName.length === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
-          onClick={() => {}}
+          onClick={() => {
+            const sectionId = uuid();
+            const section = {
+              id: sectionId,
+              title: sectionName,
+              order: index,
+              userId: 1
+            };
+            addSection(section);
+            close();
+          }}
         >
           Add section
         </div>
