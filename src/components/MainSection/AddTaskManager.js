@@ -14,7 +14,7 @@ const AddTaskManager = ({ close, sectionId }) => {
 
   return (
   <div className='cursor-pointer border border-gray-10 rounded-lg focus-within:border-gray-400'>
-    <div className='overflow-scroll max-h-64 px-4 py-2'>
+    <div className='max-h-64 px-4 py-2'>
       <ContentEditable
         innerRef={taskNameEl}
         html={taskName}

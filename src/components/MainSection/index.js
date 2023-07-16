@@ -19,7 +19,7 @@ const AddTaskContainer = ({
         className={`flex flex-row mt-2 text-gray-500 font-light hover:text-[#ff0000] cursor-pointer`}
         onClick={showTaskManager}
       >
-        <span className='mr-3'><PlusIcon /></span>
+        <span className='mr-2'><PlusIcon width='24px' fill="#ff0000" /></span>
         <div className='select-none'>Add Task</div>
       </div>
     );
@@ -122,7 +122,7 @@ const Container = () => {
 
   return (
     <div className='mx-16 mt-8'>
-      <div className='max-w-4xl mx-auto overflow-y-scroll'>
+      <div className='max-w-4xl mx-auto'>
         <Header />
         <Unsection
           tasks={getSortedListByOrder(tasks.filter(task => !task.sectionId)).map(task => <TaskLine key={task.id} task={task} isAddTaskManagerOpened={activeTaskManager === 'unsectioned'} />)}
