@@ -33,3 +33,13 @@ export const createSection = async (sectionId, section, filteredSections) => {
     });
   }
 };
+
+export const getProjectsByUserId = async (userId) => {
+  const _query = query(collection(db, "project"), where("userId", "==", userId));
+  const querySnapshot = await getDocs(_query);
+  const projects = [];
+  querySnapshot.forEach((doc) => {
+    projects.push({ id: doc.id, ...doc.data() });
+  });
+  return projects;
+};
